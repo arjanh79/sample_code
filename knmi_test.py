@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime, timedelta
+import urllib
 
 # API URL
 api_url = 'https://api.dataplatform.knmi.nl/open-data/v1/datasets/Actuele10mindataKNMIstations/versions/2/files'
@@ -29,4 +30,5 @@ filename = response['files'][-1]['filename']
 api_url = f'https://api.dataplatform.knmi.nl/open-data/v1/datasets/Actuele10mindataKNMIstations/versions/2/files/{filename}/url'
 response = requests.get(api_url, headers=headers)
 download_url = response.json()['temporaryDownloadUrl']
-print(download_url)
+
+urllib.request.urlretrieve(download_url, f'C:\\Users\\arjan\\Downloads\\{filename}')
